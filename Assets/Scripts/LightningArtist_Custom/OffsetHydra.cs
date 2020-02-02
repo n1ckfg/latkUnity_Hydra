@@ -10,8 +10,8 @@ public class OffsetHydra : MonoBehaviour {
 
 	void Awake() {
 		if (la == null)	la = GetComponent<LightningArtist>();
-		la.globalScale = globalScale;
-		la.globalOffset = globalOffset;
+		la.transform.localScale = globalScale;
+		la.transform.position = globalOffset;
 	}
 
 }

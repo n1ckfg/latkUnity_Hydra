@@ -17,10 +17,10 @@ public class Simple3DCam : MonoBehaviour {
 	private AudioListener alL;
 	private AudioListener alR;
 	private AudioListener alCenter;
-	private s3dCamera fxAnaglyph;
+	//private s3dCamera fxAnaglyph;
 
 	void Awake() {
-		fxAnaglyph = cameraL.GetComponent<s3dCamera>();
+		//fxAnaglyph = cameraL.GetComponent<s3dCamera>();
 		alL = cameraL.GetComponent<AudioListener>();
 		alR = cameraR.GetComponent<AudioListener>();
 		alCenter = GetComponent<AudioListener>();
@@ -46,10 +46,10 @@ public class Simple3DCam : MonoBehaviour {
 			cameraR.gameObject.SetActive(true);
 			cameraL.transform.position = new Vector3 (transform.position.x - (ioDistance / 2f), transform.position.y, transform.position.z);
 			cameraR.transform.position = new Vector3 (transform.position.x + (ioDistance / 2f), transform.position.y, transform.position.z);
-			fxAnaglyph.enabled = false;
+			//fxAnaglyph.enabled = false;
 		} else {
 			cameraR.gameObject.SetActive(false);
-			fxAnaglyph.enabled = true;
+			//fxAnaglyph.enabled = true;
 		}
 
 		if (stereoConfig == StereoConfig.OU_LR) {

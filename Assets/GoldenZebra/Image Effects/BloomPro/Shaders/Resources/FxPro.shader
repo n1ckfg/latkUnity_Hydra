@@ -1,4 +1,6 @@
-﻿Shader "Hidden/FxPro" {
+﻿// Upgrade NOTE: replaced 'mul(UNITY_MATRIX_MVP,*)' with 'UnityObjectToClipPos(*)'
+
+Shader "Hidden/FxPro" {
 	Properties {
 		_MainTex ("Base (RGB)", 2D) = "white" {}
 		_ChromAberrTex ("Chromatic Aberration (RGB)", 2D) = "black" {}
@@ -39,7 +41,7 @@
 		v2f_img_aa vert_img_aa(appdata_img v)
 		{
 			v2f_img_aa o;
-			o.pos = mul(UNITY_MATRIX_MVP, v.vertex);
+			o.pos = UnityObjectToClipPos(v.vertex);
 			o.uv = v.texcoord;
 			o.uv2 = v.texcoord;
 
@@ -138,7 +140,7 @@
 			v2f vert (appdata_img v)
 			{
 				v2f o;
-				o.pos = mul (UNITY_MATRIX_MVP, v.vertex);
+				o.pos = UnityObjectToClipPos (v.vertex);
 				float4 uv;
 				uv.xy = MultiplyUV (UNITY_MATRIX_TEXTURE0, v.texcoord);
 				uv.zw = 0;
