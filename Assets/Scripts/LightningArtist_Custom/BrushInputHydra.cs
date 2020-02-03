@@ -49,14 +49,14 @@ public class BrushInputHydra : MonoBehaviour {
 			Debug.Log("Ctl: Play");
 		}
 
-		//if ((!steamControllerAlt.padPressed && blockAltPadButton) || Input.GetKeyUp(KeyCode.P)) {
-		//blockAltPadButton = false;
-		//}	
+        //if ((!steamControllerAlt.padPressed && blockAltPadButton) || Input.GetKeyUp(KeyCode.P)) {
+        //blockAltPadButton = false;
+        //}	
 
-		// ~ ~ ~ ~ ~ ~ ~ ~ ~
+        // ~ ~ ~ ~ ~ ~ ~ ~ ~
 
-		// 4. frame back
-		if (sixCtlAlt.button1Down) {// || Input.GetKeyDown(KeyCode.LeftArrow)) {
+        // 4. frame back
+        if (sixCtlAlt.button1Down) {// || Input.GetKeyDown(KeyCode.LeftArrow)) {
 			lightningArtist.inputFrameBack();
 		}
 

@@ -4,3 +4,6 @@
 [submodule "Assets/latkxHydra"]
 	path = Assets/latkxHydra
 	url = https://github.com/n1ckfg/latkxHydra
+[submodule "Assets/latkxColorPicker"]
+	path = Assets/latkxColorPicker
+	url = https://github.com/n1ckfg/latkxColorPicker
