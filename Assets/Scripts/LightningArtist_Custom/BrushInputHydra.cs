@@ -4,64 +4,28 @@ using UnityEngine;
 
 public class BrushInputHydra : MonoBehaviour {
 
-	public SixenseCtl sixCtlMain;
-	public SixenseCtl sixCtlAlt;
-	public SixenseCam sixCam;
+	public Sixense_NewController sixCtlMain;
+	public Sixense_NewController sixCtlAlt;
 	public LightningArtist lightningArtist;
-	//public s3dCamera anaglyph3d;
-	public float alignTime = 5f;
+	public s3dCamera anaglyph3d;
 
-	private float markTime = 0f;
-
-	void Awake() {
+	private void Awake() {
 		if (lightningArtist == null) lightningArtist = GetComponent<LightningArtist>();
-		lightningArtist.enabled = false;
 	}
 
-	void Start() {
-		markTime = Time.realtimeSinceStartup;
-	}
-	
-	void Update () {
-		if (!sixCtlMain.firstRun && !sixCtlAlt.firstRun) { // both controllers are calibrated
-			if (Time.realtimeSinceStartup < markTime + alignTime || lightningArtist.isReadingFile) {
-				sixCam.doAlign = true;
-			} else {
-				lightningArtist.enabled = true;
-				sixCam.doAlign = false;
-			}
-		}
-			
+	private void Update () {
+		
 		// 1. draw
-		if ((!sixCtlMain.firstRun && sixCtlMain.triggerPressed)) {// || Input.GetKeyDown(KeyCode.Space)) {
+		if ((sixCtlMain.triggerPressed)) {// || Input.GetKeyDown(KeyCode.Space)) {
 			lightningArtist.clicked = true;
 		} else {
 			lightningArtist.clicked = false;
 		}
 
-		if (sixCtlMain.triggerDown) {
-			sixCtlMain.hideRen();
-		} else if (sixCtlMain.triggerUp) {
-			sixCtlMain.showRen();
-		}
-
-		if (sixCtlAlt.triggerDown || sixCtlMain.button3Down) {
-			sixCtlAlt.hideRen();
-		} else if (sixCtlAlt.triggerUp || sixCtlMain.button3Up) { 
-			sixCtlAlt.showRen();	
-		}
-
 		if (!sixCtlMain.triggerPressed) {
 			if (sixCtlMain.bumperPressed) lightningArtist.inputErase();
-
-			if (sixCtlMain.button1Down) sixCam.verticalRotation = !sixCam.verticalRotation; //lightningArtist.inputPush();
-
-			if (sixCtlMain.button3Down) sixCam.disableOffset();
 			if (sixCtlMain.button3Pressed) lightningArtist.inputColorPick();
-			if (sixCtlMain.button3Up) sixCam.enableOffset();
 		}
-
-		if (!sixCam.verticalRotation) lightningArtist.target.transform.Translate(new Vector3( 0f, 0f, -sixCtlMain.joystickVal.y * sixCam.joystickScale));
 
 		if (sixCtlAlt.bumperDown) lightningArtist.inputNextLayer();
 		if (sixCtlAlt.bumperPressed && sixCtlMain.button4Down) lightningArtist.inputNewLayer();
